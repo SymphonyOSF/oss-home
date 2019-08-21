@@ -40,3 +40,5 @@ target/**
 workspace/**
 /.recommenders/
 **/.gitignore
+/.settings/
+/target/
