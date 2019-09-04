@@ -1,5 +1,6 @@
 ---
-nav-sort: 1
+nav_order: 1
+title: Home
 ---
 # Symphony OSS Home
 This is the home of open source software published by Symphony Communication Services, LLC.
