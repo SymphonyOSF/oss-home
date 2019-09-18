@@ -96,11 +96,11 @@
 
     <commons.codec.version>1.10</commons.codec.version>
 
-    <log4j.version>2.11.0</log4j.version>
+    <log4j.version>2.12.1</log4j.version>
     <slf4j.version>1.7.25</slf4j.version>
 
-    <bcpkix.version>1.51</bcpkix.version>
-    <bcprov.version>1.51</bcprov.version>
+    <bcpkix.version>1.63</bcpkix.version>
+    <bcprov.version>1.63</bcprov.version>
 
     <junit.version>4.12</junit.version>
 
@@ -114,7 +114,6 @@
 
   <build>
     <pluginManagement>
-    
         <plugins>
           <plugin>
             <groupId>com.github.github</groupId>
