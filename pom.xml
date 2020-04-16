@@ -21,7 +21,7 @@
   
   <groupId>com.symphony.oss</groupId>
   <artifactId>oss-parent-pom</artifactId>
-  <version>0.0.7-SNAPSHOT</version>
+		<version>0.0.7-SNAPSHOT</version>
   <packaging>pom</packaging>
   
   <name>oss-home</name>
@@ -84,7 +84,7 @@
     <javax.servlet.version>3.1.0</javax.servlet.version>
 
     <aws.java.sdk.version>1.11.593</aws.java.sdk.version>
-    <protobuf.version>3.5.1</protobuf.version>
+    <protobuf.version>3.11.4</protobuf.version>
     
     <guava.version>23.5-jre</guava.version>
 
@@ -103,9 +103,6 @@
     <bcprov.version>1.63</bcprov.version>
 
     <junit.version>4.12</junit.version>
-
-    <maven-dependency-plugin.version>2.10</maven-dependency-plugin.version>
-    <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
 
     <tycho.version>1.0.0</tycho.version>
     
@@ -133,7 +130,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
-            <version>2.6</version>
+            <version>3.2.0</version>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -175,7 +172,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
-            <version>2.10</version>
+            <version>3.1.2</version>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -486,6 +483,30 @@
 
   <dependencyManagement>
     <dependencies>
+      
+      <!-- These are needed so we can deploy to Java11 they used to be part of 
+           the JDK classpath by default -->
+      <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>2.3.1</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-core</artifactId>
+        <version>2.3.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-impl</artifactId>
+        <version>2.3.2</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.activation</groupId>
+        <artifactId>activation</artifactId>
+        <version>1.1.1</version>
+      </dependency>
+      
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
