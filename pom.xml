@@ -82,7 +82,7 @@
 
     <aws.java.sdk.version>1.11.774</aws.java.sdk.version>
     
-    <guava.version>23.5-jre</guava.version>
+    <guava.version>29.0-jre</guava.version>
 
     <jetty.version>9.4.19.v20190610</jetty.version>
     <mortbay.alpm.version>8.1.11.v20170118</mortbay.alpm.version>
@@ -103,6 +103,7 @@
     <tycho.version>1.0.0</tycho.version>
     
     <checker.framework.version>2.3.0</checker.framework.version>
+    <jjwt.version>0.11.0</jjwt.version>
   </properties>
 
   <build>
@@ -158,7 +159,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.5.1</version>
+            <version>3.8.1</version>
             <configuration>
               <showWarnings>${maven.compiler.showWarnings}</showWarnings>
               <source>${maven.compiler.source}</source>
@@ -345,7 +346,10 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.0.1</version>
+          <version>3.2.0</version>
+          <configuration>
+		        <source>8</source>
+		      </configuration>
         </plugin>
 
         <plugin>
@@ -439,6 +443,7 @@
   
   
       <plugins>
+	      
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-remote-resources-plugin</artifactId>
@@ -473,6 +478,24 @@
             </execution>
           </executions>
         </plugin>
+        
+        <!-- <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>4.0.0</version>
+          <configuration>
+            <effort>Max</effort>
+            <threshold>Low</threshold>
+            <xmlOutput>true</xmlOutput>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin> -->
       </plugins>
   
   </build>
@@ -607,22 +630,20 @@
       </dependency>
       
       <dependency>
-        <groupId>io.jsonwebtoken</groupId>
-        <artifactId>jjwt-api</artifactId>
-        <version>0.10.5</version>
-      </dependency>
-      <dependency>
-        <groupId>io.jsonwebtoken</groupId>
-        <artifactId>jjwt-impl</artifactId>
-        <version>0.10.5</version>
-        <scope>runtime</scope>
-      </dependency>
-      <dependency>
-        <groupId>io.jsonwebtoken</groupId>
-        <artifactId>jjwt-jackson</artifactId>
-        <version>0.10.5</version>
-        <scope>runtime</scope>
-      </dependency>
+	      <groupId>io.jsonwebtoken</groupId>
+	      <artifactId>jjwt-api</artifactId>
+	      <version>${jjwt.version}</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>io.jsonwebtoken</groupId>
+	      <artifactId>jjwt-impl</artifactId>
+	      <version>${jjwt.version}</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>io.jsonwebtoken</groupId>
+	      <artifactId>jjwt-jackson</artifactId>
+	      <version>${jjwt.version}</version>
+	    </dependency>
 
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
@@ -701,6 +722,25 @@
         <version>${junit.version}</version>
         <scope>test</scope>
       </dependency>
+      
+      
+			<dependency>
+			  <groupId>net.jcip</groupId>
+			  <artifactId>jcip-annotations</artifactId>
+			  <version>1.0</version>
+			  <optional>true</optional>
+			</dependency>
+			<dependency>
+			  <groupId>com.github.spotbugs</groupId>
+			  <artifactId>spotbugs-annotations</artifactId>
+			  <version>4.0.4</version>
+			  <optional>true</optional>
+			</dependency>
+	    <dependency>
+	      <groupId>com.google.code.findbugs</groupId>
+	      <artifactId>jsr305</artifactId>
+	      <version>3.0.2</version>
+	    </dependency>
 
       <dependency>
         <groupId>com.amazonaws</groupId>
@@ -714,23 +754,19 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-
+  
   <dependencies>
-    <!-- Adding a dependency here makes it a dependency for *everything* Only 
-      truly general things should be added at this level. -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
     <dependency>
       <groupId>com.google.code.findbugs</groupId>
       <artifactId>jsr305</artifactId>
-      <version>3.0.2</version>
     </dependency>
-    <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <scope>test</scope>
-      </dependency>
   </dependencies>
-  
-  
   
   <!-- =============================================================================== -->
     <prerequisites>
@@ -799,10 +835,10 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
         </plugin>
-        <plugin>
+        <!-- <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>findbugs-maven-plugin</artifactId>
-        </plugin>
+        </plugin> -->
       </plugins>
     </reporting>
     <profiles>
@@ -1005,6 +1041,31 @@
                 </execution>
               </executions>
             </plugin>
+          </plugins>
+        </build>
+      </profile>
+      
+      <profile>
+        <id>spotbugs</id>
+        <build>
+          <plugins>
+            <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>4.0.0</version>
+          <configuration>
+            <effort>Max</effort>
+            <threshold>Low</threshold>
+            <xmlOutput>true</xmlOutput>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
           </plugins>
         </build>
       </profile>
