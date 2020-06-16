@@ -21,7 +21,7 @@
   
   <groupId>com.symphony.oss</groupId>
   <artifactId>oss-parent-pom</artifactId>
-		<version>0.2.2-SNAPSHOT</version>
+		<version>0.2.2</version>
   <packaging>pom</packaging>
   
   <name>oss-home</name>
