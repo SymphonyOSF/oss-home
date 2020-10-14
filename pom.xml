@@ -1119,7 +1119,7 @@
 	        <configuration>
 	            <apiToken>${snyk.api.token}</apiToken>
 	            <failOnSeverity>medium</failOnSeverity>
-	            <org></org>
+	            <org>${snyk.org.id}</org>
 	        </configuration>
         </plugin>
       </plugins>
