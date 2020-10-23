@@ -102,7 +102,7 @@
 
     <tycho.version>1.0.0</tycho.version>
     
-    <checker.framework.version>2.3.0</checker.framework.version>
+    <checker.framework.version>3.7.0</checker.framework.version>
     <jjwt.version>0.11.0</jjwt.version>
   </properties>
 
@@ -498,24 +498,6 @@
             </execution>
           </executions>
         </plugin>
-        
-        <!-- <plugin>
-          <groupId>com.github.spotbugs</groupId>
-          <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>4.0.0</version>
-          <configuration>
-            <effort>Max</effort>
-            <threshold>Low</threshold>
-            <xmlOutput>true</xmlOutput>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>check</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin> -->
       </plugins>
   
   </build>
@@ -714,13 +696,25 @@
         <version>${bcprov.version}</version>
       </dependency>
 
-      <!-- Annotations from the Checker Framework: nullness, interning, locking, -->
-      <dependency>
+      <!-- Annotations from the Checker Framework: nullness, interning, locking, ... -->
+	    <dependency>
+	      <groupId>org.checkerframework</groupId>
+	      <artifactId>checker-qual</artifactId>
+	      <version>${checker.framework.version}</version>
+	    </dependency>
+	    <!-- If using JDK 8, add the following additional dependency. -->
+	    <dependency>
+	      <groupId>com.google.errorprone</groupId>
+	      <artifactId>javac</artifactId>
+	      <version>9+181-r4173-1</version>
+	    </dependency>
+    
+      <!-- <dependency>
         <groupId>org.checkerframework</groupId>
         <artifactId>checker-qual</artifactId>
         <version>${checker.framework.version}</version>
       </dependency>
-      <!--  Use checker-qual7 if targeting Java 7 -->
+       Use checker-qual7 if targeting Java 7
       <dependency>
         <groupId>org.checkerframework</groupId>
         <artifactId>checker-qual7</artifactId>
@@ -735,7 +729,7 @@
         <groupId>org.checkerframework</groupId>
         <artifactId>jdk8</artifactId>
         <version>${checker.framework.version}</version>
-      </dependency>
+      </dependency> -->
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
@@ -750,12 +744,6 @@
 			  <version>1.0</version>
 			  <optional>true</optional>
 			</dependency>
-			<dependency>
-		    <groupId>com.github.spotbugs</groupId>
-		    <artifactId>spotbugs-annotations</artifactId>
-		    <version>4.1.3</version>
-		    <scope>provided</scope>
-		  </dependency>
 	    <dependency>
 	      <!-- This artefact is released under the Apache 2.0 license -->
 	      <groupId>com.google.code.findbugs</groupId>
@@ -1178,18 +1166,16 @@
      </build>
 
      <dependencies>
-       <dependency>
-          <groupId>org.checkerframework</groupId>
-          <artifactId>checker-qual</artifactId>
-        </dependency>
-        <dependency>
-          <groupId>org.checkerframework</groupId>
-          <artifactId>checker</artifactId>
-        </dependency>
-        <dependency>
-          <groupId>org.checkerframework</groupId>
-          <artifactId>jdk8</artifactId>
-        </dependency>
+	    <!-- Annotations from the Checker Framework: nullness, interning, locking, ... -->
+	    <dependency>
+	      <groupId>org.checkerframework</groupId>
+	      <artifactId>checker-qual</artifactId>
+	    </dependency>
+	    <!-- If using JDK 8, add the following additional dependency. -->
+	    <dependency>
+	      <groupId>com.google.errorprone</groupId>
+	      <artifactId>javac</artifactId>
+	    </dependency>
      </dependencies>
    </profile>
   </profiles>
