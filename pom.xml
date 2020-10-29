@@ -57,6 +57,7 @@
   </developers>
 
     <properties>
+      <SNYK_ORG_ID>b5496dfe-50c5-4d50-8b68-15fd99172077</SNYK_ORG_ID>
       <distMgmtReleaseName>
         Symphony Release Distribution Repository
       </distMgmtReleaseName>
@@ -1105,9 +1106,9 @@
             </execution>
 	        </executions>
 	        <configuration>
-	            <apiToken>${snyk.api.token}</apiToken>
+	            <apiToken>${SNYK_API_TOKEN}</apiToken>
 	            <failOnSeverity>medium</failOnSeverity>
-	            <org>${snyk.org.id}</org>
+	            <org>${SNYK_ORG_ID}</org>
 	        </configuration>
         </plugin>
       </plugins>
