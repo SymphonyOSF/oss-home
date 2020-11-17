@@ -4,3 +4,4 @@ color_scheme: nil
 url: "https://oss.symphony.com"
 # Set a path/url to a logo that will be displayed instead of the title
 logo: "/assets/images/logo.png"
+footer_content: "Copyright &copy; 2017-2020 <a href=https://www.symphony.com>Symphony Communication Services, LLC</a>."
