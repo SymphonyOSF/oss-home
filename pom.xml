@@ -84,7 +84,7 @@
     
     <guava.version>30.0-jre</guava.version>
 
-    <jetty.version>9.4.19.v20190610</jetty.version>
+    <jetty.version>9.4.35.v20201120</jetty.version>
     <mortbay.alpm.version>8.1.11.v20170118</mortbay.alpm.version>
     
     <jackson.version>2.11.0</jackson.version>
